@@ -5,10 +5,14 @@
 @tailwind utilities;
 
 
-@layer utilities{
-    .overflow-y-scroll::-webkit-scrollbar{
-        display:none;
-      }       
+
+    ::-webkit-scrollbar{
+      width:5px;
+      border-radius: 10px;        
+    }
+    ::-webkit-scrollbar-thumb{
+        background-color:rgba(136, 134, 134, 0.301);
+        border-radius: 10px;
     }
 
 @layer components{
@@ -19,5 +23,6 @@
     @apply flex flex-col items-start justify-start m-2 overflow-hidden text-xs  sm:text-sm
   }
 }
+
 
 
