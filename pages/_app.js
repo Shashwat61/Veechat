@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-import 'tailwindcss/tailwind.css'
+import '../styles/index.css'
 import firebase from 'firebase'
 import {useAuthState} from 'react-firebase-hooks/auth'
 import {auth} from '../firebase'

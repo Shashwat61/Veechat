@@ -1,0 +1,23 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+
+@layer utilities{
+    .overflow-y-scroll::-webkit-scrollbar{
+        display:none;
+      }       
+    }
+
+@layer components{
+  .user{
+    @apply flex flex-col items-end justify-end m-2 mb-4 overflow-hidden text-xs  sm:text-sm 
+  }
+  .receiver{
+    @apply flex flex-col items-start justify-start m-2 overflow-hidden text-xs  sm:text-sm
+  }
+}
+
+

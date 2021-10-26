@@ -7,7 +7,7 @@ import moment from 'moment'
 function  Message({user, message}) {
     const [userLoggedIn]=useAuthState(auth)
     const [isSender,setIsSender]=useState(true)
-    console.log(userLoggedIn)
+    // console.log(userLoggedIn)
     useEffect(()=>{
         user === userLoggedIn.email ? setIsSender(true):setIsSender(false)
     },[message])
