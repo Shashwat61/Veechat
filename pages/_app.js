@@ -7,6 +7,7 @@ import Login from './login'
 import {db} from '../firebase'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 
 function MyApp({ Component, pageProps }) {
   const [user,loading]=useAuthState(auth)
@@ -26,7 +27,14 @@ function MyApp({ Component, pageProps }) {
   },[user])
 
   if(!user) return <Login/>
-  return <Component {...pageProps} />
+  return <>
+  <Head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#181a1c" />
+
+  </Head>
+  <Component {...pageProps} />
+  </>
 }
 
 export default MyApp
