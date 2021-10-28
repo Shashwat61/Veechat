@@ -18,7 +18,7 @@ function  Message({user, message}) {
             {/* <img className="" src='{}' alt=""/> */}
 
             <div className="flex">
-            <p className={ isSender ? 'rounded-md  bg-blue-600 sm:p-2 p-1  h-[max-content]' : ' bg-graylight p-1 sm:p-2 max-h-[max-content] rounded-md'}>{message?.message}
+            <p className={ isSender ? ' rounded-md  bg-blue-600 sm:p-2 p-1  h-[max-content]' : ' bg-graylight p-1 sm:p-2 max-h-[max-content] rounded-md'}>{message?.message}
             <span className="text-[10px] flex justify-end self-baseline">{message?.timestamp ? moment(message?.timestamp).format('LT'): '...'}</span>
             </p>
             </div>

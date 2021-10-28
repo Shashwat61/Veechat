@@ -19,12 +19,12 @@ function Chat({id, users}) {
     }
     
     return (
-        <div onClick={enterChat} className="flex items-center p-2 my-4 text-xs transition-all duration-100 ease-in rounded-md cursor-pointer md:text-sm hover:bg-graylight">
+        <div onClick={enterChat} className="flex items-center p-2 my-4 text-xs transition-all duration-100 ease-in rounded-md cursor-pointer sm:text-base hover:bg-graylight">
             {
                 recipient ? (
-                    <img className="w-8 h-8 rounded-md md:w-12 md:h-12 " src={recipient?.photoURL} alt="user"/>
+                    <img className="w-8 h-8 rounded-md sm:w-10 sm:h-10 " src={recipient?.photoURL} alt="user"/>
                 ):(
-                    <img className="w-10 h-10 rounded-full" src="https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg" alt=""/>
+                    <img className="w-8 h-8 rounded-full" src="https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg" alt=""/>
 
                     )
             }

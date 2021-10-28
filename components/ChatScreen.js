@@ -77,19 +77,19 @@ function ChatScreen({chat, messages}) {
     const recipientEmail=getRecepientEmail(chat?.users, user)
     
     return ( 
-        <div className="text-gray-200 ">
+        <div className="text-xs text-gray-200 sm:text-base ">
             {/* header */}
             <div className="flex items-center px-4 py-2 border-b border-graylight">
                 <div onClick={()=>router.push('/')} className="mr-4 sm:hidden">
-                    <ArrowLeftIcon className="w-4 h-4" />
+                    <ArrowLeftIcon className="w-4 h-4 cursor-pointer" />
                 </div>
                 <img className="w-10 h-10 rounded-md" src={recipient ?recipient?.photoURL : `https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg`} alt=""/>
                 <div className="pl-4">
-                <p className="text-base font-semibold ">{recipient ? recipient?.name : recipientEmail}</p>
+                <p className="font-semibold ">{recipient ? recipient?.name : recipientEmail}</p>
                  
                     
                 {recipientSnapsot ? (
-                    <span className="text-xs md:text-sm">
+                    <span className="text-xs sm:text-sm">
                      Last Seen:{" "} { recipient?.lastSeen?.toDate() ? <TimeAgo date={recipient?.lastSeen?.toDate()} /> :'unavailable'}</span>
                         ):(
                             <span className="text-xs md:text-sm">Loading</span>
@@ -106,7 +106,7 @@ function ChatScreen({chat, messages}) {
             
                 <form className="px-4 py-2" onSubmit={sendMessage}>
                     <div className="flex items-center justify-between p-2 rounded-md bg-graylight">
-                    <input value={input} onKeyDown={keyDown} onChange={(e)=>setInput(e.target.value)} className="flex-1 text-sm bg-transparent border-none focus:outline-none" type="text" placeholder="Message" />
+                    <input value={input} onKeyDown={keyDown} onChange={(e)=>setInput(e.target.value)} className="flex-1 text-xs bg-transparent border-none sm:text-base focus:outline-none" type="text" placeholder="Message" />
                     <button type="submit" >
                     <PaperAirplaneIcon className="h-6 transform rotate-90 " />
                         </button>
