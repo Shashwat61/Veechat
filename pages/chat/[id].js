@@ -8,6 +8,8 @@ import getRecepientEmail from '../../utils/getRecepientEmail'
 
 function Chat({chat,messages}) {
     const [user]=useAuthState(auth)
+    // console.log(user, chat?.users)
+
     
     return (
         <div className="flex bg-bgchat">

@@ -11,8 +11,8 @@ import getRecepientEmail from "../utils/getRecepientEmail"
 import TimeAgo from 'react-timeago'
 
 function ChatScreen({chat, messages}) {
-    // console.log(chat)
-    console.log(messages)
+   
+    // console.log(messages)
     
     const [user]=useAuthState(auth)
     const router=useRouter()
@@ -22,7 +22,6 @@ function ChatScreen({chat, messages}) {
     const [recipientSnapsot]=useCollection(db.collection('users').where('email', '==', getRecepientEmail(chat?.users, user)))
     
     
-    
     function showMessages(){
             <div className="flex">
                 <img className="w-4 h-4" src="https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg" alt=""/>
@@ -30,23 +29,23 @@ function ChatScreen({chat, messages}) {
         if(messagesSnapshot){
             return messagesSnapshot?.docs?.map(message=>(
                 <Message key={message?.id} user={message?.data().user}
-                message={{...message?.data(), timestamp:message?.data().timestamp?.toDate().getTime()}}
+                message={{...message?.data(), timestamp:message?.data().timestamp?.toDate().getTime()}} users={chat?.users}
                 />
-            ))
-        } else {
+                ))
+            } else {
             return JSON.parse(messages)?.map(message=>(
                 <Message key={message.id} user={message.user}
-                message={message}
+                message={message} users={chat?.users}
                 />
                 
-            ))
+                ))
+            }
         }
-    }
 
-    function sendMessage(e){
-        e.preventDefault()
+        function sendMessage(e){
+            e.preventDefault()
        if(input.length>0 && input.charAt(0)!==" "){
-
+           
            db.collection("users").doc(user?.uid).set({
                lastSeen:firebase.firestore.FieldValue.serverTimestamp(),
             },{merge:true})
@@ -58,24 +57,26 @@ function ChatScreen({chat, messages}) {
             photoURL: user.photoURL
         })
     }  
-        setInput('')
-        scrollToBottom()
-    }
+    setInput('')
+    scrollToBottom()
+}
 
-    function keyDown(e){
-        if(e.key==" " && input.length==0 ) e.preventDefault()
-    }
-    
-    const scrollToBottom=()=>{
-        scrolltoEnd.current.scrollIntoView({
-            behavior:'smooth',
-            block:'start'
-        })
-    }
-    
-    const recipient=recipientSnapsot?.docs?.[0]?.data()
-    const recipientEmail=getRecepientEmail(chat?.users, user)
-    
+function keyDown(e){
+    if(e.key==" " && input.length==0 ) e.preventDefault()
+}
+
+const scrollToBottom=()=>{
+    scrolltoEnd.current.scrollIntoView({
+        behavior:'smooth',
+        block:'start'
+    })
+}
+
+const recipient=recipientSnapsot?.docs?.[0]?.data()
+const recipientEmail=getRecepientEmail(chat?.users, user)
+
+const bool=Math.floor(Math.abs(new Date() - recipient?.lastSeen?.toDate())/1000/60) < 1
+console.log(bool)
     return ( 
         <div className="text-xs text-gray-200 sm:text-base ">
             {/* header */}
@@ -90,7 +91,7 @@ function ChatScreen({chat, messages}) {
                     
                 {recipientSnapsot ? (
                     <span className="text-xs sm:text-sm">
-                     Last Seen:{" "} { recipient?.lastSeen?.toDate() ? <TimeAgo date={recipient?.lastSeen?.toDate()} /> :'unavailable'}</span>
+                     Last Seen:{" "} { !bool ? <TimeAgo date={recipient?.lastSeen?.toDate()} /> :'online'}</span>
                         ):(
                             <span className="text-xs md:text-sm">Loading</span>
                         )

@@ -27,7 +27,8 @@ function Sidebar() {
     
     const checkChatAlreadyExists=(recepientEmail)=>
        !!chatsSnapshots?.docs?.find(chat=>chat.data().users.find(user=>user===recepientEmail)?.length>0);
-    
+    //    console.log(chatsSnapshots?.docs?.map(chat=>chat.data()))
+       
        
     function createChat(e){
         e.preventDefault()
